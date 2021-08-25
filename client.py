@@ -4,20 +4,23 @@
 ## O cliente fornecera rotas para o front colher informacoes
 
 from datetime import datetime
-
+from model.collector import Colector
+from model.classificator import Classify
 import Pyro4
 
 server = Pyro4.Proxy(f"PYRONAME:mess.server")
 
-
-
-
 def command_line():
-  print(server.list_rows(100))
+  input('Tecle Enter para começar a buscar')
+  colector.start(server.send_tweet,25)
 
 if __name__ == '__main__':
-    try:
-        command_line()
-    except (KeyboardInterrupt, EOFError):
-        print('\nGoodbye!')
+  colector = Colector()
+  classifier = Classify()
+  
+  
+  try:
+    command_line()
+  except (KeyboardInterrupt, EOFError):
+    print('\nGoodbye!')
 exit
