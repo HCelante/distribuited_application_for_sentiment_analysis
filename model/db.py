@@ -17,7 +17,8 @@ class DB:
             self.cur.execute('''CREATE TABLE IF NOT EXISTS Tweet (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 moment    INTEGER NOT NULL,
-                content  TEXT NOT NULL
+                content  TEXT NOT NULL,
+                sentiment INTEGER
                 )''')
         except Exception as e:
             print(f'[x] Falha ao criar tabela [x]: {e}')
@@ -29,11 +30,11 @@ class DB:
         #now = datetime.now.microsecond() ()
         #now = now.strftime("%Y/%m/%d %H:%M:%S")
         epoch = int(datetime.now().strftime("%s")) * 1000 
-        tweet =  tweet.translate({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"})
-        #print(tweet)
+        tweet[0] =  tweet[0].translate({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"})
+        print(tweet[1])
         try:
             self.cur.execute(
-                '''INSERT INTO Tweet (moment,content) VALUES('''+str(epoch)+''', "'''+ str(tweet) +'''")''')
+                '''INSERT INTO Tweet (moment,content,sentiment) VALUES('''+str(epoch)+''', "'''+ str(tweet[0]) +'''",'''+str(tweet[1]) + ''')''')
         except Exception as e:
             self.total_error += 1
             self.con.rollback()
