@@ -4,6 +4,7 @@ import time
 from model.classificator import Classify
 import re
 import tweepy
+import os
 #from googletrans import Translator
 
 class Colector:
@@ -35,33 +36,43 @@ class Colector:
         auth.set_access_token("3105648036-QD8OaF37KAqCoGgDrIgOoXHNai7fh8tSe7wot6a", "X9ntr9biRoxS3mXCXLBbgMYptwo2Y7HMHg98PCNKSDq7m")
         return auth
         
-    def start_tweepy(self, rmi_obj, cicle):
+    def start_tweepy(self, rmi_obj, cicle, qtd):
         packet = []
         #api.update_status(status='Test')
         search_words = "Luffy -filter:retweets"
         date_since = "2021-01-01"
         i = 0
-        colecteds = tweepy.Cursor(self.api_tweepy.search, q=search_words, lang="en", since=date_since).items(10000)
+        colecteds = tweepy.Cursor(self.api_tweepy.search, q=search_words, lang="en", since=date_since).items(qtd)
+        partbar = qtd/cicle
+        bar = '['+ ('|' * int(partbar)) + ']'
+        barcount = 0
+        
         for tweet in colecteds:
             
-            #print(tweet.text)
+            #print(tweet)
             if(i == cicle):
+                barcount += 1
                 msg = re.sub(r"http\S+", "", tweet.text)
                 msg = re.sub(r"@\S+", "", msg)
                 sentiment = self.classify.testing_average([msg])
-                packet.append([msg,sentiment])
                 
-                print('sending',cicle)
+                packet.append([msg,sentiment,tweet.created_at])
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print(bar[:barcount] + '/' + bar[barcount+1:])
+                print('\nsending',cicle)
                 rmi_obj(packet)
                 packet = []
                 i = 0
                 #time.sleep(5)
             else:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print(bar[:barcount] + '-' + bar[barcount+1:])
+                print('\nsending',cicle)
                 msg = re.sub(r"http\S+", "", tweet.text)  # Armazena o tweet em uma variavem
                 msg = re.sub(r"@\S+", "", msg)
                 #msg = msg.strip()
                 sentiment = self.classify.testing_average([msg])
-                packet.append([msg,sentiment])
+                packet.append([msg,sentiment,tweet.created_at])
                 i+= 1
             
        

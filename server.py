@@ -12,13 +12,19 @@ class Interface(object):
         self.error = 0
         self.sucess = 0
         
+    def get_score(self):
+        banco = DB()
+        retorno = banco.get_tweet_last_hour(1000)
+        print(retorno)
+        return retorno
         
+         
     def list_rows(self):
         banco = DB()
-        retorno = banco.consult(limit='20',table='Tweet')
+        retorno = banco.consult(limit='100',table='Tweet')
         text = len(retorno)
         now = datetime.now()
-        print(f''+str(text)+' - received at {now:%H:%M:%S} \n')
+        #print(f''+str(text)+' - received at {now:%H:%M:%S} \n')
         return retorno
 
     def send_tweet(self, tweet_list):

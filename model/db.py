@@ -16,7 +16,7 @@ class DB:
         try:
             self.cur.execute('''CREATE TABLE IF NOT EXISTS Tweet (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                moment    INTEGER NOT NULL,
+                moment    TEXT NOT NULL,
                 content  TEXT NOT NULL,
                 sentiment INTEGER
                 )''')
@@ -31,10 +31,10 @@ class DB:
         #now = now.strftime("%Y/%m/%d %H:%M:%S")
         epoch = int(datetime.now().strftime("%s")) * 1000 
         tweet[0] =  tweet[0].translate({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"})
-        print(tweet[1])
+        #print(str(tweet[2]))
         try:
             self.cur.execute(
-                '''INSERT INTO Tweet (moment,content,sentiment) VALUES('''+str(epoch)+''', "'''+ str(tweet[0]) +'''",'''+str(tweet[1]) + ''')''')
+                '''INSERT INTO Tweet (moment,content,sentiment) VALUES('''+'''"'''+ str(tweet[2])+'''"'''+''', "'''+ str(tweet[0]) +'''",'''+str(tweet[1]) + ''')''')
         except Exception as e:
             self.total_error += 1
             self.con.rollback()
@@ -46,12 +46,13 @@ class DB:
 
     def get_tweet_last_hour(self, limit):
         now = datetime.now() - timedelta(hours=1, minutes=0)
-        now = now.strftime("%Y/%m/%d %H:%M:%S")
+        epoch = int(now.strftime("%s")) * 1000 
+        #now = now.strftime("%Y/%m/%d %H:%M:%S")
         print(now)
 
-        v_sql = '''SELECT * FROM Matricula WHERE moment >''' + now + ''' '''
+        v_sql = '''SELECT moment FROM Tweet '''
         return self.cur.execute(v_sql + ''' LIMIT ?''', (limit,)).fetchall()
 
     def consult(self, limit, table):
-        return self.cur.execute('''SELECT * FROM ''' + table + ''' LIMIT ?''', (limit,)).fetchall()
+        return self.cur.execute('''SELECT moment, sentiment FROM ''' + table + ''' ORDER BY moment LIMIT ?''', (limit,)).fetchall()
 
