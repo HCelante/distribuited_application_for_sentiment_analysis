@@ -19,8 +19,14 @@ Linguagens de programação: Python e javascript
 
 #Como executar o projeto:
 <br/>
+Conceder permissão de execução aos scripts com o comando: <br/>
+sudo chmod +x prepare.sh <br/>
+sudo chmod +x run.sh <br/>
+
 Para instalar todas as dependências necessárias é necessário executar o script prepare.sh<br/>
-Para iniciar todos os projetos é necessário executar o script run.sh. Todos os projetos irão iniciar em modo de produção. <br/>
+Para iniciar todos os projetos é necessário executar o script run.sh. Todos os projetos irão iniciar em modo de produção. <br/>,
+ <br/>
+  <br/>
 **#Protocolo de comunicação e fluxo de trabalho**
 O coletor ira realizar uma requisição utilizando a api Tweepy ao twitter enviando palavras chaves, filtros e quantidade de tweets a ser coletado. O twitter responde esta requisição com um objeto contendo data, usuario, entidade e texto. Após o coletor receber uma lista de objetos é realizado um processamento utilizando expressões regulares para remover links e mensções no formato: "@usuario". Após o processamento o classificador é utilizado para analisar o sentimento do tweet com sklearn. Existem três sentimentos possiveis: Neutro, Negativo e Positivo. Após devidamente classificado é inserido um registro no banco de dados via invocação remota. O registro possui: a classificação, o texto do tweet e a data do mesmo. Após essa coleta, classificação e inserção, a api rest irá requisitar uma contagem de cada sentimento, total de positivos, total de negativos e  total de neutros. Essa informação é enviada ao front end onde será renderizado um grafico do tipo PieChart para a visualização dos resultados. Outra possivel interação no front-end é a passagem de uma quantidade de tweets diretamente para o coletor via invocação remota, assim reiniciando o processo.
 
