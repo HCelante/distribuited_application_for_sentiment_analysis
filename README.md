@@ -13,7 +13,7 @@ skLearn: https://scikit-learn.org/stable/<br/>
 Linguagens de programação: Python e javascript
 
 
-<img src="https://github.com/HCelante/distribuited_application/blob/main/Twitter.png?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/nextjs.jpg?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/react.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/tweepy.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/sklearn.png?raw=true"/> 
+<img src="https://github.com/HCelante/distribuited_application/blob/main/Twitter.png?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/nextjs.jpg?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/react.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/tweepy.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/sklearn.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/Luffy.jpg?raw=true"/> 
 
 <img src="https://github.com/HCelante/distribuited_application/blob/main/arquitetura.jpeg?raw=true"/> 
 
