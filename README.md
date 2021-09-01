@@ -41,7 +41,7 @@ Return: Insersão de tweets no banco de dados.
 
 **#Class: Classify**
 
-**#Métodos:**
+#**Métodos:**
 **get_df:**
 Cria o dataset que será utilizado para treinar o modelo.
 params: null
@@ -94,7 +94,7 @@ return: consulta dos tweets.
 **#Class Interface(server.py)**
 Interface de inicialização do servidor RMI
 
-**#Métodos: **
+**#Métodos:**
 
 **get_score:**
 Retorna a classificação dos tweets da ultima hora.
@@ -117,7 +117,7 @@ params: null
 return: null
 
 
-****Classes e métodos do pacote api**
+**Classes e métodos do pacote api**
 Arquivo de rotas e endpoints da api rest.
 
 **Rota: '/'**
@@ -133,4 +133,4 @@ Após receber o parametros realiza uma requisição via RMI ao coletor.
 **index.js caminho: front/pages/componentes/graph**
 
 Recebe os dados da classificação dos tweets via requisição HTTP e renderiza o gráfico de pizza para visualização dos resultados da classificação dos dados.
-**
+
