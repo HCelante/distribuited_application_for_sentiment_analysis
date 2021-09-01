@@ -57,7 +57,7 @@ function Graph() {
                         ['Neutro', sentiments[2]],
                     ]}
                     options={{
-                        title: 'Análise Sentimental de tweets sobre o personagem Luffy de One Pieces',
+                        title: 'Análise Sentimental de tweets sobre o personagem Luffy de One Piece',
                         // Just add this option
                         is3D: true,
                     }}

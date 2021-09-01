@@ -7,16 +7,11 @@
     "dev": "next dev"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HCelante/Next_Vercel_Pratice.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HCelante/Next_Vercel_Pratice/issues"
-  },
-  "homepage": "https://github.com/HCelante/Next_Vercel_Pratice#readme",
   "dependencies": {
     "chart.js": "^1.1.1",
     "google-charts": "^2.0.0",
