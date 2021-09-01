@@ -13,11 +13,11 @@ skLearn: https://scikit-learn.org/stable/<br/>
 Linguagens de programação: Python e javascript
 
 
-<img src="https://github.com/HCelante/distribuited_application/blob/main/Twitter.png?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/nextjs.jpg?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/react.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/tweepy.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/sklearn.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/Luffy.jpg?raw=true"/> 
+<img src="https://github.com/HCelante/distribuited_application/blob/main/Images/Twitter.png?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/Images/nextjs.jpg?raw=true"/><img src="https://github.com/HCelante/distribuited_application/blob/main/Images/react.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/Images/tweepy.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/Images/sklearn.png?raw=true"/> <img src="https://github.com/HCelante/distribuited_application/blob/main/Images/Luffy.jpg?raw=true"/> 
 
-<img src="https://github.com/HCelante/distribuited_application/blob/main/arquitetura.jpeg?raw=true"/> 
+<img src="https://github.com/HCelante/distribuited_application/blob/main/Images/arquitetura.jpeg?raw=true"/> 
 
-#Como executar o projeto:
+### Como executar o projeto:
 <br/>
 Conceder permissão de execução aos scripts com o comando: <br/>
 sudo chmod +x prepare.sh <br/>
@@ -27,35 +27,35 @@ Para instalar todas as dependências necessárias é necessário executar o scri
 Para iniciar todos os projetos é necessário executar o script run.sh. Todos os projetos irão iniciar em modo de produção. <br/>
  <br/>
   <br/>
-**#Protocolo de comunicação e fluxo de trabalho** <br/>
+###  **Protocolo de comunicação e fluxo de trabalho** <br/>
 
 
 O coletor ira realizar uma requisição utilizando a api Tweepy ao twitter enviando palavras chaves, filtros e quantidade de tweets a ser coletado. O twitter responde esta requisição com um objeto contendo data, usuario, entidade e texto. Após o coletor receber uma lista de objetos é realizado um processamento utilizando expressões regulares para remover links e mensções no formato: "@usuario". Após o processamento o classificador é utilizado para analisar o sentimento do tweet com sklearn. Existem três sentimentos possiveis: Neutro, Negativo e Positivo. Após devidamente classificado é inserido um registro no banco de dados via invocação remota. O registro possui: a classificação, o texto do tweet e a data do mesmo. Após essa coleta, classificação e inserção, a api rest irá requisitar uma contagem de cada sentimento, total de positivos, total de negativos e  total de neutros. Essa informação é enviada ao front end onde será renderizado um grafico do tipo PieChart para a visualização dos resultados. Outra possivel interação no front-end é a passagem de uma quantidade de tweets diretamente para o coletor via invocação remota, assim reiniciando o processo.
 
 
-Documentação de métodos e classes:
+### Documentação de métodos e classes:
 <br/>
-**Class: Colector.py**
+Class: Colector.py 
 <br/>
-#**Métodos:**
+Métodos: 
 <br/>
-#**create_auth_tweepy:**<br/>
+create_auth_tweepy: <br/>
 Cria as credenciais de uso do twitter para utilização do Tweepy.<br/>
 Params: null<br/>
 Return: autenticação tweepy<br/>
 <br/>
-**#start_tweepy:**<br/>
+start_tweepy: <br/>
 Inicializa a coleta de tweets. Define as palavras chaves a serem buscadas e a data inicial.
 Após definir as palavras chaves inicia-se a coleta. Adiciona cada tweet coletado a uma lista e posteriormente inserir esse pacote no banco de dados utilizando um objeto rmi.<br/>
 Params: rmi_obj, ciclo, quantidade<br/>
 Return: Insersão de tweets no banco de dados.<br/>
 
 <br/>
-#Class: Classify
+Class: Classify
 <br/><br/>
 Métodos: <br/><br/>
 get_df: <br/>
-Cria o dataset que será utilizado para treinar o modelo.<br/>
+Importa e carrega o dataset que será utilizado para treinar o modelo.<br/>
 params: null<br/>
 return: dataset<br/>
 <br/>
@@ -76,16 +76,16 @@ params: eixo X do vetor teste.<br/>
 return: predição do modelo.<br/>
 <br/>
 Arquivo: Tweets.csv<br/>
-Dataset de treino para o modelo relacioanr os sentimentos.
+Dataset de treino para o modelo relacionar os sentimentos.
 <br/>
 
 Interface: server_collector.py<br/>
 Inicia o servidor para coleta de tweets. A biblioteca Pyro4 é utilizada para execução do servidor.<br/>
 
 <br/>
-##Classes e métodos do pacote Server_db:<br/>
+###  Classes e métodos do pacote Server_db:<br/>
 
-#Class: DB<br/>
+### Class: DB<br/>
 **Métodos**:<br/>
 
 **Create_tweet:**<br/>
@@ -103,10 +103,10 @@ Retorna os tweets da última hora.<br/>
 params: Limite<br/>
 return: consulta dos tweets.<br/>
 <br/>
-**#Class Interface(server.py)**<br/>
+### **Class Interface(server.py)**<br/>
 Interface de inicialização do servidor RMI<br/>
 
-**#Métodos:**<br/>
+### **Métodos:**<br/>
 
 **get_score:**<br/>
 Retorna a classificação dos tweets da ultima hora.<br/>
@@ -129,7 +129,7 @@ params: null<br/>
 return: null<br/>
 
 
-**Classes e métodos do pacote api**<br/>
+### **Classes e métodos do pacote api**<br/>
 Arquivo de rotas e endpoints da api rest.<br/>
 <br/>
 **Rota: '/'**<br/>
@@ -140,7 +140,7 @@ Recebe via url o parametro de quantidade de tweets a ser coletado.<br/>
 Após receber o parametros realiza uma requisição via RMI ao coletor.<br/>
 
 <br/>
-#Classes e métodos do pacote Front-End<br/>
+### Classes e métodos do pacote Front-End<br/>
 
 **index.js caminho: front/pages/componentes/graph**<br/>
 
