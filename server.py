@@ -21,7 +21,7 @@ class Interface(object):
          
     def list_rows(self):
         banco = DB()
-        retorno = banco.consult(limit='100',table='Tweet')
+        retorno = banco.consult(limit='2000',table='Tweet')
         text = len(retorno)
         now = datetime.now()
         #print(f''+str(text)+' - received at {now:%H:%M:%S} \n')

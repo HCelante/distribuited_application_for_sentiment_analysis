@@ -58,5 +58,5 @@ class DB:
     #Entrada: limite de dados e tabela
     #Saída: Retorna a consulta de todos os tweets com o limite de data
     def consult(self, limit, table):
-        return self.cur.execute('''SELECT moment, sentiment FROM ''' + table + ''' ORDER BY moment LIMIT ?''', (limit,)).fetchall()
+        return self.cur.execute('''SELECT sentiment FROM ''' + table + ''' ORDER BY moment LIMIT ?''', (limit,)).fetchall()
 

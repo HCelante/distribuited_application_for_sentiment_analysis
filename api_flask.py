@@ -5,15 +5,24 @@ matplotlib.use('WebAgg')
 import matplotlib.pyplot as plt,mpld3
 from flask import Flask
 import Pyro4
+from flask import jsonify
+from flask import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 server = Pyro4.Proxy(f"PYRONAME:mess.server")
 collector = Pyro4.Proxy(f"PYRONAME:mess.client")
 
 @app.route('/')
 def index():
-    last = {"data" : server.get_score()}
-    return last
+    last = server.list_rows()
+    response = app.response_class(
+        response=json.dumps( last),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 @app.route('/collect/<num_tweets>')
 def hello(num_tweets):

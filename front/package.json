@@ -18,10 +18,14 @@
   },
   "homepage": "https://github.com/HCelante/Next_Vercel_Pratice#readme",
   "dependencies": {
+    "chart.js": "^1.1.1",
+    "google-charts": "^2.0.0",
+    "google-charts-node": "^1.0.4",
     "next": "^10.0.3",
     "npm-upgrade": "^2.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-google-charts": "^3.0.15",
     "react-strap": "0.0.1"
   }
 }
