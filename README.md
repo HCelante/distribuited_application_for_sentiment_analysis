@@ -22,115 +22,115 @@ O coletor ira realizar uma requisição utilizando a api Tweepy ao twitter envia
 
 
 Documentação de métodos e classes:
-
+<br/>
 **Class: Colector.py**
-
+<br/>
 #**Métodos:**
-
-#**create_auth_tweepy:**
-Cria as credenciais de uso do twitter para utilização do Tweepy.
-Params: null
-Return: autenticação tweepy
-
-**#start_tweepy:**
+<br/>
+#**create_auth_tweepy:**<br/>
+Cria as credenciais de uso do twitter para utilização do Tweepy.<br/>
+Params: null<br/>
+Return: autenticação tweepy<br/>
+<br/>
+**#start_tweepy:**<br/>
 Inicializa a coleta de tweets. Define as palavras chaves a serem buscadas e a data inicial.
-Após definir as palavras chaves inicia-se a coleta. Adiciona cada tweet coletado a uma lista e posteriormente inserir esse pacote no banco de dados utilizando um objeto rmi.
-Params: rmi_obj, ciclo, quantidade
-Return: Insersão de tweets no banco de dados.
+Após definir as palavras chaves inicia-se a coleta. Adiciona cada tweet coletado a uma lista e posteriormente inserir esse pacote no banco de dados utilizando um objeto rmi.<br/>
+Params: rmi_obj, ciclo, quantidade<br/>
+Return: Insersão de tweets no banco de dados.<br/>
 
-
+<br/>
 **#Class: Classify**
-
-#**Métodos:**
-**get_df:**
-Cria o dataset que será utilizado para treinar o modelo.
-params: null
-return: dataset
-
-**get_vect:**
-Cria o modelo de vetor que será utilizado no sklearn.
-params: null
-return: vector criado
-
-**create_clf:**
+<br/>
+#**Métodos:** <br/>
+**get_df:** <br/>
+Cria o dataset que será utilizado para treinar o modelo.<br/>
+params: null<br/>
+return: dataset<br/>
+<br/>
+**get_vect:** <br/>
+Cria o modelo de vetor que será utilizado no sklearn.<br/>
+params: null<br/>
+return: vector criado<br/>
+<br/>
+**create_clf:**<br/>
 Define como o modelo será treinado. Define Regressão Logistica como algmoritmo a ser utilizado. Utilizando o solucionador newton-cg. Cria os score de análise.
-Testa a precisão do modelo.
-params: null
-return: clf
-
-**testing_average:**
-Testa a predição do modelo.
-params: eixo X do vetor teste.
-return: predição do modelo.
-
-**Arquivo: Tweets.csv**
+Testa a precisão do modelo.<br/>
+params: null<br/>
+return: clf<br/>
+<br/>
+**testing_average:**<br/>
+Testa a predição do modelo.<br/>
+params: eixo X do vetor teste.<br/>
+return: predição do modelo.<br/>
+<br/>
+**Arquivo: Tweets.csv**<br/>
 Dataset de treino para o modelo relacioanr os sentimentos.
+<br/>
+
+Interface: server_collector.py<br/>
+Inicia o servidor para coleta de tweets. A biblioteca Pyro4 é utilizada para execução do servidor.<br/>
+
+<br/>
+##**Classes e métodos do pacote Server_db:**<br/>
+
+**#Class: DB**<br/>
+**Métodos**:<br/>
+
+**Create_tweet:**<br/>
+Cria a tabela de tweets caso não existe.<br/>
+params: null<br/>
+return: null<br/>
+<br/>
+**insert_tweet:**<br/>
+Insere o tweet no bando de dados<br/>
+params: tweets<br/>
+return: total de registros inseridos, inseridos com sucesso e quantidade de falhas.<br/>
+<br/>
+**get_tweet_last_hour:**<br/>
+Retorna os tweets da última hora.<br/>
+params: Limite<br/>
+return: consulta dos tweets.<br/>
+<br/>
+**#Class Interface(server.py)**<br/>
+Interface de inicialização do servidor RMI<br/>
+
+**#Métodos:**<br/>
+
+**get_score:**<br/>
+Retorna a classificação dos tweets da ultima hora.<br/>
+Params: null<br/>
+return: score dos tweets da ultima hora.<br/>
+<br/>
+**list_rows:**<br/>
+Realiza uma consulta de 2000 tweets na tabela, salva a quantidade de retorno. Filtra a data atual<br/>
+params: null <br/>
+Return: retorna os 2000 registros; <br/>
+<br/>
+**send_tweet:**<br/>
+Itera uma lista de tweets contabilizando o total de registros inseridos com sucesso, registros totais e registros com erro na inserção.<br/>
+Params: tweet_list<br/>
+Return: null<br/>
+<br/>
+**start_server:**<br/>
+Inicia o servidor utilizando Pyro4<br/>
+params: null<br/>
+return: null<br/>
 
 
-Interface: server_collector.py
-Inicia o servidor para coleta de tweets. A biblioteca Pyro4 é utilizada para execução do servidor.
+**Classes e métodos do pacote api**<br/>
+Arquivo de rotas e endpoints da api rest.<br/>
+<br/>
+**Rota: '/'**<br/>
+retorna o list dos registros como json.<br/>
+<br/>
+**Rota: '/collect/<num_tweets>**<br/>
+Recebe via url o parametro de quantidade de tweets a ser coletado.<br/>
+Após receber o parametros realiza uma requisição via RMI ao coletor.<br/>
 
+<br/>
+**#Classes e métodos do pacote Fron-End**<br/>
 
-##**Classes e métodos do pacote Server_db:**
-
-**#Class: DB**
-**Métodos:**
-
-**Create_tweet:**
-Cria a tabela de tweets caso não existe.
-params: null
-return: null
-
-**insert_tweet:**
-Insere o tweet no bando de dados
-params: tweets
-return: total de registros inseridos, inseridos com sucesso e quantidade de falhas.
-
-**get_tweet_last_hour:**
-Retorna os tweets da última hora.
-params: Limite
-return: consulta dos tweets.
-
-**#Class Interface(server.py)**
-Interface de inicialização do servidor RMI
-
-**#Métodos:**
-
-**get_score:**
-Retorna a classificação dos tweets da ultima hora.
-Params: null
-return: score dos tweets da ultima hora.
-
-**list_rows:**
-Realiza uma consulta de 2000 tweets na tabela, salva a quantidade de retorno. Filtra a data atua
-params: null
-Return: retorna os 2000 registros;
-
-**send_tweet:**
-Itera uma lista de tweets contabilizando o total de registros inseridos com sucesso, registros totais e registros com erro na inserção.
-Params: tweet_list
-Return: null
-
-**start_server:**
-Inicia o servidor utilizando Pyro4
-params: null
-return: null
-
-
-**Classes e métodos do pacote api**
-Arquivo de rotas e endpoints da api rest.
-
-**Rota: '/'**
-retorna o list dos registros como json.
-
-**Rota: '/collect/<num_tweets>**
-Recebe via url o parametro de quantidade de tweets a ser coletado.
-Após receber o parametros realiza uma requisição via RMI ao coletor.
-
-
-**#Classes e métodos do pacote Fron-End**
-
-**index.js caminho: front/pages/componentes/graph**
+**index.js caminho: front/pages/componentes/graph**<br/>
 
 Recebe os dados da classificação dos tweets via requisição HTTP e renderiza o gráfico de pizza para visualização dos resultados da classificação dos dados.
 
