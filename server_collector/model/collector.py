@@ -64,20 +64,31 @@ class Colector:
                 print('\nPacket Size: ',cicle)
                 print('\nTotal Packets: ',partbar) 
                 rmi_obj(packet)                                             #Cria o objeto RMI
-                packet = []                                                 #cria uma lista Pacote
+                packet = []                                                 #Limpa a lista Pacote
                 i = 0
                 #time.sleep(5)
+            
+                
             else:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print(bar[:barcount] + '-' + bar[barcount+1:]) 
                 print('\nsending',cicle)
                 msg = re.sub(r"http\S+", "", tweet.text)                    #Utiliza expressão regular para remover links dos tweets
                 msg = re.sub(r"@\S+", "", msg)                              #Utiliza expressão regular para remover menções no formato: @usuario 
-                #msg = msg.strip()
                 sentiment = self.classify.testing_average([msg])            #Classifica o sentimento do tweet utilizando o classificador sklearn
                 packet.append([msg,sentiment,tweet.created_at])             #Adiciona o tweet, o sentimento e a data do tweet
                 i+= 1
+        if(i > 0):
+            barcount += 1
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(bar[:barcount] + '/' + bar[barcount+1:])              #Imprime a barra de progresso
+            print('\nPacket Size: ',cicle)
+            print('\nTotal Packets: ',partbar) 
+            rmi_obj(packet)
+            packet = []                                                
+            i = 0
             
+               
     #Params: contexto, objeto rmi de invocação, ciclo
     #Saída: Null
     def start(self, rmi_obj, cicle):

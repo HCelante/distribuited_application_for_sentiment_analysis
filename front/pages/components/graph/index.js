@@ -77,8 +77,7 @@ function Graph() {
                             ]}
                             options={{
                                 title: 'Análise Sentimental de tweets sobre o personagem Luffy de One Piece',
-                                // Just add this option
-                                is3D: true,
+                                is3D: true
                             }}
                             rootProps={{ 'data-testid': '2' }}
                         ></Chart>
