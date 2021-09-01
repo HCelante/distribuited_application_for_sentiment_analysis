@@ -39,31 +39,31 @@ Params: rmi_obj, ciclo, quantidade<br/>
 Return: Insersão de tweets no banco de dados.<br/>
 
 <br/>
-**#Class: Classify**
-<br/>
-#**Métodos:** <br/>
-**get_df:** <br/>
+#Class: Classify
+<br/><br/>
+Métodos: <br/><br/>
+get_df: <br/>
 Cria o dataset que será utilizado para treinar o modelo.<br/>
 params: null<br/>
 return: dataset<br/>
 <br/>
-**get_vect:** <br/>
+get_vect: <br/>
 Cria o modelo de vetor que será utilizado no sklearn.<br/>
 params: null<br/>
 return: vector criado<br/>
 <br/>
-**create_clf:**<br/>
+create_clf:<br/>
 Define como o modelo será treinado. Define Regressão Logistica como algmoritmo a ser utilizado. Utilizando o solucionador newton-cg. Cria os score de análise.
 Testa a precisão do modelo.<br/>
 params: null<br/>
 return: clf<br/>
 <br/>
-**testing_average:**<br/>
+testing_average:<br/>
 Testa a predição do modelo.<br/>
 params: eixo X do vetor teste.<br/>
 return: predição do modelo.<br/>
 <br/>
-**Arquivo: Tweets.csv**<br/>
+Arquivo: Tweets.csv<br/>
 Dataset de treino para o modelo relacioanr os sentimentos.
 <br/>
 
@@ -71,9 +71,9 @@ Interface: server_collector.py<br/>
 Inicia o servidor para coleta de tweets. A biblioteca Pyro4 é utilizada para execução do servidor.<br/>
 
 <br/>
-##**Classes e métodos do pacote Server_db:**<br/>
+##Classes e métodos do pacote Server_db:<br/>
 
-**#Class: DB**<br/>
+#Class: DB<br/>
 **Métodos**:<br/>
 
 **Create_tweet:**<br/>
@@ -128,7 +128,7 @@ Recebe via url o parametro de quantidade de tweets a ser coletado.<br/>
 Após receber o parametros realiza uma requisição via RMI ao coletor.<br/>
 
 <br/>
-**#Classes e métodos do pacote Fron-End**<br/>
+#Classes e métodos do pacote Front-End<br/>
 
 **index.js caminho: front/pages/componentes/graph**<br/>
 
