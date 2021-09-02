@@ -1,5 +1,5 @@
 # Análise de sentimenos em tweets sobre o personagem Luffy de One Piece
-Trabalho da disciplina de Sistemas Distribuidos. Consiste em coletar tweets via api Tweepy e realizar a classificação com com sklearn;
+Trabalho da disciplina de Sistemas Distribuidos. Consiste em coletar tweets via api Tweepy e realizar a classificação com sklearn;
 
 Tecnologias utilizadas: 
 
@@ -82,8 +82,10 @@ Dataset de treino para o modelo relacionar os sentimentos.
 Interface: server_collector.py<br/>
 Inicia o servidor para coleta de tweets. A biblioteca Pyro4 é utilizada para execução do servidor.<br/>
 
-<br/>
-###  Classes e métodos do pacote Server_db:<br/>
+
+
+## Classes e métodos do pacote Server_db
+
 
 ### Class: DB<br/>
 **Métodos**:<br/>
@@ -129,7 +131,7 @@ params: null<br/>
 return: null<br/>
 
 
-### **Classes e métodos do pacote api**<br/>
+## **Classes e métodos do pacote api**<br/>
 Arquivo de rotas e endpoints da api rest.<br/>
 <br/>
 **Rota: '/'**<br/>
@@ -140,9 +142,13 @@ Recebe via url o parametro de quantidade de tweets a ser coletado.<br/>
 Após receber o parametros realiza uma requisição via RMI ao coletor.<br/>
 
 <br/>
-### Classes e métodos do pacote Front-End<br/>
 
-**index.js caminho: front/pages/componentes/graph**<br/>
+
+## **Classes e métodos do pacote Front-End**
+
+
+
+**index.js caminho: front/pages/components/graph**<br/>
 
 Recebe os dados da classificação dos tweets via requisição HTTP e renderiza o gráfico de pizza para visualização dos resultados da classificação dos dados.
 
